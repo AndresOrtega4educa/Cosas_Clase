@@ -1,0 +1,30 @@
+#!/bin/bash
+
+FICHERO="palabras_ordenadas.txt"
+
+echo "Introduce palabras separadas por espacios:"
+read -r LINEA
+
+# Convertimos la línea en parámetros posicionales
+set -- $LINEA
+
+# Limpiamos fichero
+> "$FICHERO"
+
+PALABRAS=()
+
+# Usamos shift como si fueran argumentos
+while [ "$#" -gt 0 ]; do
+    PALABRAS+=("$1")
+    shift
+done
+
+echo "=== ORDEN ALFABÉTICO ===" >> "$FICHERO"
+printf "%s\n" "${PALABRAS[@]}" | sort >> "$FICHERO"
+
+echo >> "$FICHERO"
+
+echo "=== ORDEN INVERSO ===" >> "$FICHERO"
+printf "%s\n" "${PALABRAS[@]}" | sort -r >> "$FICHERO"
+
+echo "Resultado guardado en $FICHERO"

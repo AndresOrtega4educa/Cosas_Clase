@@ -1,0 +1,29 @@
+#!/bin/bash
+
+cont_dir=0
+cont_fich=0
+
+if [ $# -lt 1 ]; then
+    echo "Uso: Añade parametros y te digo si es un fichero o un directorio"
+    exit 1
+fi
+
+
+echo "Total de parametros recibidos: $#"
+
+for var in "$@"; 
+do
+	if [ -d "$var" ]; then
+		((cont_dir++))
+		echo "$var es un directorio."
+	elif [ -f "$var" ]; then
+		((cont_fich++))
+		echo "$var es un fichero."
+	else 
+		echo "$var no existe o no es un fichero ni un directorio."
+	fi
+done
+
+echo "------------"
+echo "Directorios encontrados: $cont_dir"
+echo "Archivos encontrados: $cont_fich"

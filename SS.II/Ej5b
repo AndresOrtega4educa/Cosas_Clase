@@ -1,0 +1,7 @@
+#!/bin/bash
+
+grep '^[AEIOUaeiou]' entrada > salida | while IFS= read -r linea;
+do
+    echo "$linea"
+done
+

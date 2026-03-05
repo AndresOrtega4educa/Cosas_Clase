@@ -1,0 +1,39 @@
+#!/bin/bash
+
+echo "USO: Introduce un directorio y una palabra para comprobar si dentro de ese directorio existe algún fichero con ese nombre."
+
+read -p "Introduce un directorio: " dir
+read -p "Introduce una palabra: " palabra
+
+if [ ! -d "$dir" ]; then
+    echo "Error: el directorio no existe."
+    exit 1
+fi
+
+
+for archivo in "$dir"/*"$palabra"*; do
+
+    if [ -f "$archivo" ]; then
+        echo "----------------------------------"
+        echo "Contenido de $archivo:"
+        echo "----------------------------------"
+        cat "$archivo"
+        echo
+
+        read -p "¿Deseas borrar este archivo? (s/n): " respuesta
+
+        if [[ $respuesta == "s" || $respuesta == "S" ]]; then
+            rm "$archivo"
+
+            if [ ! -e "$archivo" ]; then
+                echo "Archivo borrado correctamente."
+            else
+                echo "Error: no se pudo borrar el archivo."
+            fi
+        else
+            echo "Archivo conservado."
+        fi
+    fi
+done
+
+

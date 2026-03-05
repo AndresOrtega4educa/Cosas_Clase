@@ -1,0 +1,23 @@
+#!/bin/bash
+
+echo "Introduce 3 palabras (iguales o distintas):"
+
+read -p "Palabra 1: " p1
+read -p "Palabra 2: " p2
+read -p "Palabra 3: " p3
+
+if [ "$p1" = "$p2" ] && [ "$p2" = "$p3" ]; then
+    echo "Todas las palabras son iguales."
+
+elif [ "$p1" = "$p2" ] || [ "$p1" = "$p3" ] || [ "$p2" = "$p3" ]; then
+    echo "Al menos 2 de las tres palabras son iguales."
+
+else
+    echo "Todas las palabras son distintas entre ellas."
+fi
+
+
+
+
+
+

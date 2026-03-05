@@ -1,0 +1,74 @@
+#!/bin/bash
+
+opc=0
+while [ "$opc" -ne 5 ]; do
+    clear
+    echo "MENU"
+    echo
+    echo "1 - Crear un directorio."
+    echo "2 - Borrar un directorio."
+    echo "3 - Crear un fichero."
+    echo "4 - Borrar un fichero."
+    echo "5 - Salir."
+    echo
+    echo -n "Elige una opción: "
+    read -r opc
+    echo
+    case "$opc" in
+        1)
+            echo "Crear un directorio"
+            echo
+            echo -n "Dale un nombre al directorio: "
+            read -r dir
+            mkdir "$dir"
+            echo "Directorio creado"
+            echo
+            echo -n "Pulsa una tecla para continuar..."
+            read -r tecla
+            ;;
+  	2)
+   	   echo "Borrar un directorio"
+ 	   echo
+           echo -n "¿Qué directorio quieres borrar?: "
+   	   read -r dir
+	   if [ -d "$dir" ]; then
+       	   rmdir "$dir"
+       	   echo "Directorio borrado"
+           else
+          	 echo "ERROR: El directorio no existe"
+   	   fi
+   	   echo
+           echo -n "Pulsa una tecla para continuar..."
+           read -r tecla
+           ;;		
+	3)
+            echo "Crear un fichero"
+            echo
+            echo -n "Dale un nombre al fichero: "
+            read -r file
+            touch "$file"
+            echo "Fichero creado"
+            echo
+            echo -n "Pulsa una tecla para continuar..."
+            read -r tecla
+            ;;
+	4)
+   	 echo "Borrar un fichero"
+   	 echo
+   	 echo -n "¿Qué fichero deseas borrar?: "
+   	 read -r file
+   	 if [ -f "$file" ]; then
+         rm "$file"
+         echo "Fichero borrado"
+   	 else
+       		 echo "ERROR: El fichero no existe"
+   	 fi
+
+   	 echo
+   	 echo -n "Pulsa una tecla para continuar..."
+   	 read -r tecla;;
+	5)
+	 echo "Salir"
+	clear;;
+	esac
+done

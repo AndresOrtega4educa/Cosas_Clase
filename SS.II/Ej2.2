@@ -1,0 +1,9 @@
+for (( a=1; a<=10;a++ ))
+do
+echo "Tabla del $a"
+	for (( b=1; b<=10; b++ ))
+	do
+	mult=$(($a * $b ))
+	echo "Numero: $a x $b = $mult"
+	done
+done
